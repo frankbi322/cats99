@@ -1,0 +1,32 @@
+<% action = cat.persisted? ? "patch" : "post" %>
+<% request_type = cat.persisted? ? cat_url(cat) : cats_url %>
+<form action="<%=request_type%>" method="post">
+  <input type="hidden" name="_method" value="<%=action%>">
+  <label for="cat_name">Cat Name </label>
+  <input type="text" name="cat[name]" id="cat_name" value=<%=cat.name%>>
+  <br>
+  <label for="cat_birth_day">Cat's Birthday</label>
+  <input type="date" name=cat[birth_date] id ="cat_birth_day" value=<%=cat.birth_date%>>
+  <br>
+  <input type="radio" name="cat[sex]" id="cat_sex_female" value ="F" <%= "checked" if cat.sex == "F" %>>
+  <label for="cat_sex_female">Female</label>
+  <br>
+  <input type="radio" name="cat[sex]" id="cat_sex_male" value ="M"  <%= "checked" if cat.sex == "M" %>>
+  <label for="cat_sex_male">Male</label>
+  <br>
+  <label for="cat_color">Cat color</label>
+  <select name="cat[color]" id="cat_color">
+    <!-- <option value=" ">Blank</option> -->
+    <option <%= "selected" if cat.color == "brown" %> value="brown">Brown</option>
+    <!-- <option value="brown">Brown</option> -->
+    <option <%= "selected" if cat.color == "black" %> value="black">Black</option>
+    <!-- <option value="black">Black</option> -->
+    <option <%= "selected" if cat.color == "white" %> value="white">White</option>
+    <!-- <option value="white">White</option> -->
+    <option <%= "selected" if cat.color == "red" %> value="red">Red</option>
+  </select>
+  <label for "cat_description">Brief Description of Cat</label>
+  <input type="text" name="cat[description]" id="cat_description" value="<%=cat.description%>">
+  <br>
+  <input type="submit" value="Update cat">
+</form>
